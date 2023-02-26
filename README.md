@@ -27,9 +27,9 @@ CONSTRAINT FK_Cargo FOREIGN KEY (IdCargo) REFERENCES CARGO(IdCargo)
 
 
 INSERT INTO CARGO(Descripcion) VALUES
-('Asistente de ventas'),
+('Desarrollador'),
 ('Diseñador de marketing'),
-('Atención al cliente')
+('Ama de llaves')
 
 GO
 
