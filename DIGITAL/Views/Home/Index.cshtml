@@ -15,42 +15,19 @@
     </div>
     <div class="card-body">
         <a class="btn btn-success btn-sm" asp-action="Empleado_Detalle" asp-controller="Home" asp-route-idEmpleado="0">Crear Nuevo</a>
-        <a class="btn btn-info btn-sm"  href="@Url.Action("GenerateExcel", "Home")">Exportar a Excel</a>
+        <a class="btn btn-primary btn-sm" href="@Url.Action("GenerateExcel", "Home")">Exportar a Excel</a>
 
         <hr />
-        <form method="get" action="@Url.Action("Index", "Home")">
+        <form id="filtro-form" method="get" action="@Url.Action("Filtrar", "Home")">
             <label for="idCliente">ID del Cliente:</label>
             <input type="number" name="idCliente" value="" />
             <button type="submit">Filtrar</button>
         </form>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Nombre Completo</th>
-                    <th>Correo</th>
-                    <th>Telefono</th>
-                    <th>Cargo</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model) {
-                    <tr>
-                        <td>@item.NombreCompleto</td>
-                        <td>@item.Correo</td>
-                        <td>@item.Telefono</td>
-                        <td>@item.oCargo.Descripcion</td>
-                        <td>
-                            <a class="btn btn-primary btn-sm " asp-action="Empleado_Detalle" asp-controller="Home" asp-route-idEmpleado="@item.IdEmpleado"> Editar</a>
-                            <a class="btn btn-danger btn-sm " asp-action="Eliminar" asp-controller="Home" asp-route-idEmpleado="@item.IdEmpleado"> Eliminar</a>
-                        </td>
-                    </tr>
+        
 
-
-
-                }
-            </tbody>
-        </table>
+        <div id="lista-empleados-partial">
+            @await Html.PartialAsync("_ListaEmpleadosPartial", Model)
+        </div>
 
 
     </div>

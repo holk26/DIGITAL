@@ -124,5 +124,23 @@ namespace DIGITAL.Controllers {
             return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Tareas.xlsx");
         }
 
+        public IActionResult Filtrar(int idCliente) {
+
+            if (idCliente == 0) {
+                var empleadosFiltrados1 = _DBcontext.Empleados
+                .Include(e => e.oCargo)
+                .ToList();
+
+                return PartialView("_ListaEmpleadosPartial", empleadosFiltrados1);
+            }
+            var empleadosFiltrados = _DBcontext.Empleados
+                .Where(e => e.IdEmpleado == idCliente)
+                .Include(e => e.oCargo)
+                .ToList();
+
+            return PartialView("_ListaEmpleadosPartial", empleadosFiltrados);
+        }
+
+
     }
 }
