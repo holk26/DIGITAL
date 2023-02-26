@@ -15,7 +15,14 @@
     </div>
     <div class="card-body">
         <a class="btn btn-success btn-sm" asp-action="Empleado_Detalle" asp-controller="Home" asp-route-idEmpleado="0">Crear Nuevo</a>
+        <a class="btn btn-info btn-sm"  href="@Url.Action("GenerateExcel", "Home")">Exportar a Excel</a>
+
         <hr />
+        <form method="get" action="@Url.Action("Index", "Home")">
+            <label for="idCliente">ID del Cliente:</label>
+            <input type="number" name="idCliente" value="" />
+            <button type="submit">Filtrar</button>
+        </form>
         <table class="table table-striped">
             <thead>
                 <tr>
